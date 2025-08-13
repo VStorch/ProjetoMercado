@@ -1,0 +1,17 @@
+# Binários compilados
+/bin/
+
+# Arquivos temporários e de backup
+*.tmp
+*.bak
+*.log
+
+# Arquivos de configuração de IDEs e ambientes de desenvolvimento
+.vscode/
+.settings/
+.classpath
+.project
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
