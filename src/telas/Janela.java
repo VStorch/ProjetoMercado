@@ -1,6 +1,7 @@
 package telas;
 
 import java.awt.CardLayout;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,7 +12,7 @@ public class Janela extends JFrame {
 	private CardLayout cardLayout;
 	
 	// Telas da aplicação
-	private TelaLogin telaIdent;
+	private TelaLogin telaLogin;
 	
 	// Constantes para nomear as telas
 	public static final String LOGIN_PANEL = "Login";
@@ -20,6 +21,29 @@ public class Janela extends JFrame {
 	private String currentUser;
 	
 	public Janela() {
+		setTitle("Sistema de mercado");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 573, 426);
+		setLocationRelativeTo(null);
 		
+		cardLayout = new CardLayout();
+		
+		contentPane = new JPanel(cardLayout);
+		contentPane.setPreferredSize(new Dimension(500, 200));
+		
+		// Instancia as telas
+		telaLogin = new TelaLogin(this);
+		
+		// Adiciona as telas ao contentPane
+		contentPane.add(telaLogin, LOGIN_PANEL);
+		
+		setContentPane(contentPane);
+		
+		mostrarTela(LOGIN_PANEL);
+	}
+	
+	// Método genérico para trocar de tela
+	public void mostrarTela(String panelName) {
+		cardLayout.show(contentPane, panelName);
 	}
 }

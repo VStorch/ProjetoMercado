@@ -8,6 +8,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JButton;
 
 public class TelaLogin extends JFrame {
@@ -18,60 +20,47 @@ public class TelaLogin extends JFrame {
 	private JTextField txfCpf;
 	private JTextField txfSenha;
 
+	private Janela janela;
+	
 	public TelaLogin(Janela janela) {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 573, 426);
-		setLocationRelativeTo(null);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
 		
-		JLabel lblTitulo = new JLabel("Identificação de Usuário");
-		lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitulo.setBounds(178, 11, 171, 21);
-		contentPane.add(lblTitulo);
-		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(10, 35, 537, 341);
-		contentPane.add(panel);
-		panel.setLayout(null);
+		setPreferredSize(new Dimension(500, 200));
+		this.janela = janela;
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNome.setBounds(27, 63, 46, 14);
-		panel.add(lblNome);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblCpf.setBounds(27, 104, 46, 14);
-		panel.add(lblCpf);
 		
 		JLabel lblSenhaAd = new JLabel("Senha de administrador:");
 		lblSenhaAd.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblSenhaAd.setBounds(27, 141, 142, 14);
-		panel.add(lblSenhaAd);
 		
 		txfNome = new JTextField();
 		txfNome.setBounds(70, 60, 253, 20);
-		panel.add(txfNome);
 		txfNome.setColumns(10);
 		
 		txfCpf = new JTextField();
 		txfCpf.setColumns(10);
 		txfCpf.setBounds(70, 101, 253, 20);
-		panel.add(txfCpf);
 		
 		txfSenha = new JTextField();
 		txfSenha.setColumns(10);
 		txfSenha.setBounds(171, 138, 152, 20);
-		panel.add(txfSenha);
 		
 		JButton btnEntrar = new JButton("Entrar");
 		btnEntrar.setBounds(234, 295, 89, 23);
-		panel.add(btnEntrar);
+		
+		add(lblNome);
+		add(lblCpf);
+		add(lblSenhaAd);
+		add(txfNome);
+		add(txfCpf);
+		add(txfSenha);
+		add(btnEntrar);
+
 	}
 }
