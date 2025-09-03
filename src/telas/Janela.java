@@ -46,4 +46,11 @@ public class Janela extends JFrame {
 	public void mostrarTela(String panelName) {
 		cardLayout.show(contentPane, panelName);
 	}
+	
+	// Método chamado pelo LoginPanel para ir para a tela principal
+	public void mostrarTelaPrincipal(String userName) {
+		this.currentUser = userName;
+		// telaPrincipal.updateWelcomeMessage(currentUser);
+		// mostrarTela(MAIN_PANEL);
+	}
 }
