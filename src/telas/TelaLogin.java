@@ -1,5 +1,4 @@
 package telas;
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,7 +10,7 @@ import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
 
-public class Identificacao extends JFrame {
+public class TelaLogin extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -19,26 +18,7 @@ public class Identificacao extends JFrame {
 	private JTextField txfCpf;
 	private JTextField txfSenha;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Identificacao frame = new Identificacao();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
-	public Identificacao() {
+	public TelaLogin(Janela janela) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 573, 426);
 		setLocationRelativeTo(null);

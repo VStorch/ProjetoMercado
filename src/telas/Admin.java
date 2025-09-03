@@ -54,12 +54,6 @@ public class Admin extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		addWindowListener(new WindowAdapter() {
-			public void windowClosed(WindowEvent e) {
-				Identificacao telaIdent = new Identificacao();
-				telaIdent.setVisible(true);
-			}
-		});
 	}
 
 }
