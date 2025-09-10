@@ -1,5 +1,6 @@
-package telas;
+package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
@@ -10,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class Admin extends JFrame {
+public class Compras extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -22,7 +23,7 @@ public class Admin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Admin frame = new Admin();
+					Compras frame = new Compras();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,9 +35,9 @@ public class Admin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Admin() {
+	public Compras() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 565, 398);
+		setBounds(100, 100, 545, 415);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -44,15 +45,17 @@ public class Admin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Tela de Cadastro de Produtos");
+		JLabel lblNewLabel = new JLabel("Compras");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel.setBounds(171, 11, 192, 14);
+		lblNewLabel.setBounds(224, 11, 59, 14);
 		contentPane.add(lblNewLabel);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 36, 529, 312);
+		panel.setBackground(new Color(255, 255, 255));
+		panel.setBounds(10, 31, 509, 334);
 		contentPane.add(panel);
 		panel.setLayout(null);
+		
 		
 	}
 
