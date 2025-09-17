@@ -1,4 +1,6 @@
-package view;
+package main;
+
+import view.Janela;
 
 public class Main {
 
