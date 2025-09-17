@@ -23,13 +23,13 @@ public class Janela extends JFrame {
 	public Janela() {
 		setTitle("Sistema de mercado");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 573, 426);
+		setBounds(100, 100, 480, 370);
 		setLocationRelativeTo(null);
 		
 		cardLayout = new CardLayout();
 		
 		contentPane = new JPanel(cardLayout);
-		contentPane.setPreferredSize(new Dimension(500, 200));
+		contentPane.setPreferredSize(new Dimension(400, 200));
 		
 		// Instancia as telas
 		telaLogin = new TelaLogin(this);

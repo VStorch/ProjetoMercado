@@ -1,12 +1,14 @@
 package view;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
 import java.awt.Dimension;
+import java.awt.Font;
 
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 public class TelaLogin extends JPanel {
 
@@ -14,13 +16,17 @@ public class TelaLogin extends JPanel {
 	private JTextField txfNome;
 	private JTextField txfCpf;
 	private JTextField txfSenha;
-
+	
 	private Janela janela;
 	
 	public TelaLogin(Janela janela) {
-		
-		setPreferredSize(new Dimension(500, 200));
+		setPreferredSize(new Dimension(400, 200));
 		this.janela = janela;
+		
+		GroupLayout layout = new GroupLayout(this);
+		setLayout(layout);
+		layout.setAutoCreateGaps(true);
+		layout.setAutoCreateContainerGaps(true);
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -58,6 +64,34 @@ public class TelaLogin extends JPanel {
 		add(lblSenhaAd);
 		add(txfSenha);
 		add(btnEntrar);
-
+		
+		GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
+		hGroup.addGroup(layout.createParallelGroup().
+				addComponent(lblNome).addComponent(lblCpf).
+				addComponent(lblSenhaAd)
+			);
+		hGroup.addGroup(layout.createParallelGroup().
+				addComponent(txfNome).
+				addComponent(txfCpf).
+				addComponent(txfSenha).
+				addComponent(btnEntrar)
+			);
+		layout.setHorizontalGroup(hGroup);
+		
+		GroupLayout.SequentialGroup vGroup = layout.createSequentialGroup();
+		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).
+				addComponent(lblNome).
+				addComponent(txfNome)
+			);
+		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).
+				addComponent(lblCpf).
+				addComponent(txfCpf)
+			);
+		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).
+				addComponent(lblSenhaAd).
+				addComponent(txfSenha)
+			);
+		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(btnEntrar));
+		layout.setVerticalGroup(vGroup);
 	}
 }
