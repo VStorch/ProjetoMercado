@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -30,30 +31,22 @@ public class TelaLogin extends JPanel {
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblNome.setBounds(27, 63, 46, 14);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblCpf.setBounds(27, 104, 46, 14);
 		
 		JLabel lblSenhaAd = new JLabel("Senha de administrador:");
 		lblSenhaAd.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblSenhaAd.setBounds(27, 141, 142, 14);
+		
+		JLabel lblCadastro = new JLabel("Não possui cadastro? Clique aqui.");
+		lblCadastro.setFont(new Font("Calibri", Font.PLAIN, 11));
+		lblCadastro.setForeground(new Color(000, 000, 255));
 		
 		txfNome = new JTextField();
-		txfNome.setBounds(70, 60, 253, 20);
-		txfNome.setColumns(10);
-		
 		txfCpf = new JTextField();
-		txfCpf.setColumns(10);
-		txfCpf.setBounds(70, 101, 253, 20);
-		
 		txfSenha = new JTextField();
-		txfSenha.setColumns(10);
-		txfSenha.setBounds(171, 138, 152, 20);
 		
 		JButton btnEntrar = new JButton("Entrar");
-		btnEntrar.setBounds(234, 295, 89, 23);
 		
 		add(lblNome);
 		add(txfNome);
@@ -67,8 +60,9 @@ public class TelaLogin extends JPanel {
 		
 		GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
 		hGroup.addGroup(layout.createParallelGroup().
-				addComponent(lblNome).addComponent(lblCpf).
-				addComponent(lblSenhaAd)
+				addComponent(lblNome).
+				addComponent(lblCpf).
+				addComponent(lblSenhaAd).addComponent(lblCadastro)
 			);
 		hGroup.addGroup(layout.createParallelGroup().
 				addComponent(txfNome).
@@ -91,7 +85,10 @@ public class TelaLogin extends JPanel {
 				addComponent(lblSenhaAd).
 				addComponent(txfSenha)
 			);
-		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(btnEntrar));
+		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).
+				addComponent(lblCadastro).
+				addComponent(btnEntrar)
+			);
 		layout.setVerticalGroup(vGroup);
 	}
 }
