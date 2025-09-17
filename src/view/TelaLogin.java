@@ -1,21 +1,16 @@
 package view;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
-import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.JButton;
 
-public class TelaLogin extends JFrame {
+public class TelaLogin extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
 	private JTextField txfNome;
 	private JTextField txfCpf;
 	private JTextField txfSenha;
@@ -55,10 +50,12 @@ public class TelaLogin extends JFrame {
 		btnEntrar.setBounds(234, 295, 89, 23);
 		
 		add(lblNome);
-		add(lblCpf);
-		add(lblSenhaAd);
 		add(txfNome);
+
+		add(lblCpf);
 		add(txfCpf);
+
+		add(lblSenhaAd);
 		add(txfSenha);
 		add(btnEntrar);
 
