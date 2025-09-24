@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -42,7 +43,7 @@ public class TelaCadastro extends JPanel {
 		JLabel lblSenhaConf = new JLabel("Confirme a sua senha:");
 		lblSenhaConf.setFont(new Font("Arial", Font.PLAIN, 12));
 		
-		JLabel lblAdmin = new JLabel("Selecione o seu sexo:");
+		JLabel lblAdmin = new JLabel("Será administrador?");
 		lblAdmin.setFont(new Font("Calibri", Font.PLAIN, 12));
 		
 		txtNome = new JTextField();
@@ -67,5 +68,29 @@ public class TelaCadastro extends JPanel {
 		
 		add(lblAdmin);
 		add(btnAdmin);
+		
+		GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
+		hGroup.addGroup(layout.createParallelGroup().
+				addComponent(lblNome).
+				addComponent(lblCpf).
+				addComponent(lblAdmin)
+			);
+		hGroup.addGroup(layout.createParallelGroup().
+				addComponent(txtNome).
+				addComponent(txtCpf).
+				addComponent(btnAdmin).
+				addComponent(btnCadastrar)
+			);
+		GroupLayout.SequentialGroup vGroup = layout.createSequentialGroup();
+		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).
+				addComponent(lblNome).addComponent(txtNome)
+			);
+		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).
+				addComponent(lblCpf).addComponent(txtCpf)
+			);
+		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE)
+				.addComponent(lblAdmin).addComponent(btnAdmin)
+			);
+		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(btnCadastrar));
 	}
 }
