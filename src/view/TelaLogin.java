@@ -9,14 +9,14 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class TelaLogin extends JPanel {
 
-	private static final long serialVersionUID = 1L;
 	private JTextField txfNome;
 	private JTextField txfCpf;
-	private JTextField txfSenha;
+	private JPasswordField txfSenha;
 	
 	private Janela janela;
 	
@@ -44,7 +44,7 @@ public class TelaLogin extends JPanel {
 		
 		txfNome = new JTextField();
 		txfCpf = new JTextField();
-		txfSenha = new JTextField();
+		txfSenha = new JPasswordField();
 		
 		JButton btnEntrar = new JButton("Entrar");
 		
