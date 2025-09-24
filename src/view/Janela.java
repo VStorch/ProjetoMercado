@@ -13,9 +13,11 @@ public class Janela extends JFrame {
 	
 	// Telas da aplicação
 	private TelaLogin telaLogin;
+	private TelaCadastro telaCadastro;
 	
 	// Constantes para nomear as telas
 	public static final String LOGIN_PANEL = "Login";
+	public static final String CADASTRO_PANEL = "Cadastro";
 	
 	// Variável de estado, guarda o usuário logado
 	private String currentUser;
@@ -33,9 +35,11 @@ public class Janela extends JFrame {
 		
 		// Instancia as telas
 		telaLogin = new TelaLogin(this);
+		telaCadastro = new TelaCadastro(this);
 		
 		// Adiciona as telas ao contentPane
 		contentPane.add(telaLogin, LOGIN_PANEL);
+		contentPane.add(telaCadastro, CADASTRO_PANEL);
 		
 		setContentPane(contentPane);
 		

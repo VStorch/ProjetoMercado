@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -16,8 +17,7 @@ public class TelaCadastro extends JPanel {
 	private JTextField txtCpf;
 	private JPasswordField pwSenha;
 	private JPasswordField pwSenhaConf;
-	private JRadioButton buttonM;
-	private JRadioButton buttonF;
+	private JRadioButton btnAdmin;
 	
 	private Janela janela;
 	
@@ -42,7 +42,30 @@ public class TelaCadastro extends JPanel {
 		JLabel lblSenhaConf = new JLabel("Confirme a sua senha:");
 		lblSenhaConf.setFont(new Font("Arial", Font.PLAIN, 12));
 		
-		JLabel lblSexo = new JLabel("Selecione o seu sexo:");
-		lblSexo.setFont(new Font("Calibri", Font.PLAIN, 12));
+		JLabel lblAdmin = new JLabel("Selecione o seu sexo:");
+		lblAdmin.setFont(new Font("Calibri", Font.PLAIN, 12));
+		
+		txtNome = new JTextField();
+		txtCpf = new JTextField();
+		pwSenha = new JPasswordField();
+		pwSenhaConf = new JPasswordField();
+		btnAdmin = new JRadioButton();
+		
+		JButton btnCadastrar = new JButton("Cadastrar");
+		
+		add(lblNome);
+		add(txtNome);
+		
+		add(lblCpf);
+		add(txtCpf);
+		
+//		add(lblSenha);
+//		add(pwSenha);
+//		
+//		add(lblSenhaConf);
+//		add(pwSenhaConf);
+		
+		add(lblAdmin);
+		add(btnAdmin);
 	}
 }
