@@ -81,6 +81,7 @@ public class TelaCadastro extends JPanel {
 				addComponent(btnAdmin).
 				addComponent(btnCadastrar)
 			);
+        layout.setHorizontalGroup(hGroup);
 		GroupLayout.SequentialGroup vGroup = layout.createSequentialGroup();
 		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).
 				addComponent(lblNome).addComponent(txtNome)
@@ -92,5 +93,6 @@ public class TelaCadastro extends JPanel {
 				.addComponent(lblAdmin).addComponent(btnAdmin)
 			);
 		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(btnCadastrar));
+        layout.setVerticalGroup(vGroup);
 	}
 }
