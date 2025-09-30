@@ -1,9 +1,12 @@
 create database mercado;
 
+use mercado;
+
 create table usuarios (
 	id int auto_increment primary key,
     nome varchar(100) not null,
     email varchar(100) unique not null,
+    senha varchar(100),
     adm bool default false
 );
 
@@ -26,6 +29,6 @@ create table itens_pedido (
     produto_id int not null,
     quantidade int not null,
     preco_unitario decimal(10, 2) not null,
-    foreign key (pedidos_id) references pedidos(id),
+    foreign key (pedido_id) references pedidos(id),
     foreign key (produto_id) references produtos(id)
 );
