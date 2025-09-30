@@ -33,4 +33,6 @@ public class UsuarioDAO {
         }
     }
 
+    // Terminar CRUD conforme a necessidade
+
 }

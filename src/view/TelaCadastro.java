@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -19,6 +20,7 @@ public class TelaCadastro extends JPanel {
 	private JPasswordField pwSenha;
 	private JPasswordField pwSenhaConf;
 	private JRadioButton btnAdmin;
+    JButton btnCadastrar;
 	
 	private Janela janela;
 	
@@ -52,7 +54,7 @@ public class TelaCadastro extends JPanel {
 		pwSenhaConf = new JPasswordField();
 		btnAdmin = new JRadioButton();
 		
-		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar = new JButton("Cadastrar");
 		
 		add(lblNome);
 		add(txtNome);
@@ -95,4 +97,24 @@ public class TelaCadastro extends JPanel {
 		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).addComponent(btnCadastrar));
         layout.setVerticalGroup(vGroup);
 	}
+
+    public String getNome() {
+        return this.txtNome.getText();
+    }
+    public String getCpf() {
+        return this.txtCpf.getText();
+    }
+    public String getSenha() {
+        return this.pwSenha.getText();
+    }
+    public String getSenhaConf() {
+        return this.pwSenhaConf.getText();
+    }
+    public boolean isAdmin() {
+        return this.btnAdmin.isSelected();
+    }
+
+    public void cadastrar(ActionListener actionListener) {
+        this.btnCadastrar.addActionListener(actionListener);
+    }
 }
