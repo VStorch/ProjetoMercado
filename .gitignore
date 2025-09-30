@@ -1,5 +1,6 @@
 # Binários compilados
 /bin/
+out/
 
 # Arquivos temporários e de backup
 *.tmp
@@ -11,6 +12,12 @@
 .settings/
 .classpath
 .project
+
+# IntelliJ
+.idea/
+*.iws
+*.iml
+*.ipr
 
 # Arquivos de sistema
 .DS_Store
