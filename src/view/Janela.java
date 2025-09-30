@@ -44,7 +44,9 @@ public class Janela extends JFrame {
 		setContentPane(contentPane);
 		
 		mostrarTela(LOGIN_PANEL);
-	}
+        // mostrarTela(CADASTRO_PANEL);
+
+    }
 	
 	// Método genérico para trocar de tela
 	public void mostrarTela(String panelName) {
