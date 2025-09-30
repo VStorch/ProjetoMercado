@@ -21,10 +21,22 @@ public class CadastroController {
             String senhaConf = view.getSenhaConf();
             boolean admin = view.isAdmin();
 
-            if (!nome.equals("") && !cpf.equals("") && senha.equals(senhaConf)) {
-                Usuario usuario = new Usuario(null, nome, cpf, senha, admin);
-                this.model.adicionarUsuario(usuario);
+            if (!nome.equals("") && !cpf.equals("")) {
+                if (senha.equals(senhaConf)){
+                    Usuario usuario = new Usuario(null, nome, cpf, senha, admin);
+                    this.model.adicionarUsuario(usuario);
+
+                    this.view.limparFormularios();
+                    this.view.exibirMensagem("Sucesso", "Cadastro realizado com sucesso!", 1);
+
+                } else {
+                    this.view.exibirMensagem("Erro", "Senhas diferentes", 0);
+                }
+            } else {
+                this.view.exibirMensagem("Erro", "Preencha todos os campos", 0);
             }
         });
+
+
     }
 }

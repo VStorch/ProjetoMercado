@@ -4,14 +4,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JRadioButton;
-import javax.swing.JTextField;
 
 public class TelaCadastro extends JPanel {
 	
@@ -116,5 +110,14 @@ public class TelaCadastro extends JPanel {
 
     public void cadastrar(ActionListener actionListener) {
         this.btnCadastrar.addActionListener(actionListener);
+    }
+
+    public void exibirMensagem(String titulo, String mensagem, int tipoMensagem) {
+        JOptionPane.showMessageDialog(null, mensagem, titulo, tipoMensagem);
+    }
+
+    public void limparFormularios() {
+        this.txtNome.setText("");
+        this.txtCpf.setText("");
     }
 }
