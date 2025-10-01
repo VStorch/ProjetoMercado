@@ -42,7 +42,5 @@ public class CadastroController {
                 this.view.exibirMensagem("Erro", "Preencha todos os campos", 0);
             }
         });
-
-
     }
 }

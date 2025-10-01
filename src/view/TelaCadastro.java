@@ -15,13 +15,10 @@ public class TelaCadastro extends JPanel {
 	private JPasswordField pwSenhaConf;
 	private JRadioButton btnAdmin;
     JButton btnCadastrar;
-	
-	private Janela janela;
-	
+
 	public TelaCadastro() {
 		setPreferredSize(new Dimension(400, 200));
-		this.janela = janela;
-		
+
 		GroupLayout layout = new GroupLayout(this);
 		setLayout(layout);
 		layout.setAutoCreateGaps(true);
@@ -55,12 +52,6 @@ public class TelaCadastro extends JPanel {
 		
 		add(lblCpf);
 		add(txtCpf);
-		
-//		add(lblSenha);
-//		add(pwSenha);
-//		
-//		add(lblSenhaConf);
-//		add(pwSenhaConf);
 		
 		add(lblAdmin);
 		add(btnAdmin);

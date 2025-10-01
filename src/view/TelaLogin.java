@@ -3,6 +3,8 @@ package view;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -17,13 +19,11 @@ public class TelaLogin extends JPanel {
 	private JTextField txfNome;
 	private JTextField txfCpf;
 	private JPasswordField txfSenha;
-	
-	private Janela janela;
-	
+    private JLabel lblCadastro;
+
 	public TelaLogin() {
 		setPreferredSize(new Dimension(400, 200));
-		this.janela = janela;
-		
+
 		GroupLayout layout = new GroupLayout(this);
 		setLayout(layout);
 		layout.setAutoCreateGaps(true);
@@ -38,7 +38,7 @@ public class TelaLogin extends JPanel {
 		JLabel lblSenhaAd = new JLabel("Senha de administrador:");
 		lblSenhaAd.setFont(new Font("Arial", Font.PLAIN, 12));
 		
-		JLabel lblCadastro = new JLabel("Não possui cadastro? Clique aqui.");
+		lblCadastro = new JLabel("Não possui cadastro? Clique aqui.");
 		lblCadastro.setFont(new Font("Calibri", Font.PLAIN, 11));
 		lblCadastro.setForeground(new Color(000, 000, 255));
 		
@@ -91,4 +91,8 @@ public class TelaLogin extends JPanel {
 			);
 		layout.setVerticalGroup(vGroup);
 	}
+
+    public void esqueceuSenha(MouseAdapter mouseAdapter) {
+        this.lblCadastro.addMouseListener(mouseAdapter);
+    }
 }
