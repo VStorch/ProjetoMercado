@@ -35,20 +35,31 @@ public class UsuarioDAO {
         }
     }
 
-    public void login(String nome, String cpf, String senha) {
+    public Usuario login(String nome, String cpf, String senha) {
         String sql = "SELECT * FROM usuarios where cpf = ?";
         Connection conexao = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
+        Usuario usuario = null;
         try {
             BancoDeDados.conectar();
             statement = conexao.prepareStatement(sql);
             resultSet = statement.executeQuery();
 
-        } catch (SQLException e) {
+            usuario = new Usuario();
+            usuario.setId(resultSet.getInt("id"));
+            usuario.setNome(resultSet.getString("nome"));
+            usuario.setCpf(resultSet.getString("cpf"));
+            usuario.setSenha(resultSet.getString("senha"));
+            usuario.setAdmin(resultSet.getBoolean("adm"));
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            BancoDeDados.desconectar(conexao);
         }
+        return usuario;
     }
 
     // Terminar CRUD conforme a necessidade
