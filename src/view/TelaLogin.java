@@ -6,13 +6,8 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 
-import javax.swing.GroupLayout;
+import javax.swing.*;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
 public class TelaLogin extends JPanel {
 
@@ -20,6 +15,7 @@ public class TelaLogin extends JPanel {
 	private JTextField txfCpf;
 	private JPasswordField pwSenha;
     private JLabel lblCadastro;
+    JButton btnEntrar;
 
 	public TelaLogin() {
 		setPreferredSize(new Dimension(400, 200));
@@ -39,14 +35,14 @@ public class TelaLogin extends JPanel {
 		lblSenhaAd.setFont(new Font("Arial", Font.PLAIN, 12));
 		
 		lblCadastro = new JLabel("Não possui cadastro? Clique aqui.");
-		lblCadastro.setFont(new Font("Calibri", Font.PLAIN, 11));
+		lblCadastro.setFont(new Font("Calibri", Font.PLAIN, 12));
 		lblCadastro.setForeground(new Color(000, 000, 255));
 		
 		txfNome = new JTextField();
 		txfCpf = new JTextField();
 		pwSenha = new JPasswordField();
 		
-		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar = new JButton("Entrar");
 		
 		add(lblNome);
 		add(txfNome);
@@ -104,5 +100,13 @@ public class TelaLogin extends JPanel {
 
     public void cadastrar(MouseAdapter mouseAdapter) {
         this.lblCadastro.addMouseListener(mouseAdapter);
+    }
+
+    public void entrar(ActionListener actionListener) {
+        this.btnEntrar.addActionListener(actionListener);
+    }
+
+    public void exibirMensagem(String titulo, String mensagem, int tipoMensagem) {
+        JOptionPane.showMessageDialog(null, mensagem, titulo, tipoMensagem);
     }
 }

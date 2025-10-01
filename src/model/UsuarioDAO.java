@@ -35,31 +35,30 @@ public class UsuarioDAO {
         }
     }
 
-    public Usuario login(String nome, String cpf, String senha) {
+    public boolean login(Usuario user) {
         String sql = "SELECT * FROM usuarios where cpf = ?";
         Connection conexao = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
 
-        Usuario usuario = null;
         try {
-            BancoDeDados.conectar();
+            conexao = BancoDeDados.conectar();
             statement = conexao.prepareStatement(sql);
+            statement.setString(1, user.getCpf());
             resultSet = statement.executeQuery();
 
-            usuario = new Usuario();
-            usuario.setId(resultSet.getInt("id"));
-            usuario.setNome(resultSet.getString("nome"));
-            usuario.setCpf(resultSet.getString("cpf"));
-            usuario.setSenha(resultSet.getString("senha"));
-            usuario.setAdmin(resultSet.getBoolean("adm"));
+            // Problema com NullPointerException
+            if (resultSet.next()) {
+                String senhaBD = resultSet.getString("senha");
+                return senhaBD.equals(user.getSenha());
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             BancoDeDados.desconectar(conexao);
         }
-        return usuario;
+        return false;
     }
 
     // Terminar CRUD conforme a necessidade

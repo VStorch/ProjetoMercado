@@ -1,11 +1,10 @@
 package main;
 
 import controller.CadastroController;
+import controller.LoginController;
 import controller.Navegador;
 import model.UsuarioDAO;
-import view.Janela;
-import view.TelaCadastro;
-import view.TelaLogin;
+import view.*;
 
 public class Main {
 
@@ -16,17 +15,26 @@ public class Main {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
 
         TelaLogin telaLogin = new TelaLogin();
-        // Criar Login Controller
+        LoginController loginController = new LoginController(telaLogin, usuarioDAO, navegador);
 
         TelaCadastro telaCadastro = new TelaCadastro();
         CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador);
 
+        TelaCompra telaCompra = new TelaCompra();
+        // Implementar Controller da tela compra
+
+        TelaAdmin telaAdmin = new TelaAdmin();
+        // Implementar Controller da tela do admin
+
         navegador.adicionarPainel("CADASTRO", telaCadastro);
+        navegador.adicionarPainel("LOGIN", telaLogin);
+        navegador.adicionarPainel("COMPRA", telaCompra);
+        navegador.adicionarPainel("ADMIN", telaAdmin);
 
         janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
 
-        navegador.navegarPara("CADASTRO");
+        navegador.navegarPara("LOGIN");
 	}
 
 }
