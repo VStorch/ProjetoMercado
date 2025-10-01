@@ -99,10 +99,10 @@ public class TelaCadastro extends JPanel {
         return this.txtCpf.getText();
     }
     public String getSenha() {
-        return this.pwSenha.getText();
+        return new String(this.pwSenha.getPassword());
     }
     public String getSenhaConf() {
-        return this.pwSenhaConf.getText();
+        return new String(this.pwSenhaConf.getPassword());
     }
     public boolean isAdmin() {
         return this.btnAdmin.isSelected();
@@ -110,6 +110,13 @@ public class TelaCadastro extends JPanel {
 
     public void cadastrar(ActionListener actionListener) {
         this.btnCadastrar.addActionListener(actionListener);
+    }
+
+    public void pedirSenha(String titulo) {
+        int option = JOptionPane.showConfirmDialog(this, pwSenha, titulo, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+    }
+    public void pedirSenhaConf(String titulo) {
+        int option = JOptionPane.showConfirmDialog(this, pwSenhaConf, titulo, JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
     }
 
     public void exibirMensagem(String titulo, String mensagem, int tipoMensagem) {

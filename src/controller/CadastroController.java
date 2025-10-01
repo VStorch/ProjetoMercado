@@ -17,9 +17,14 @@ public class CadastroController {
         this.view.cadastrar(e -> {
             String nome = view.getNome();
             String cpf = view.getCpf();
+            boolean admin = view.isAdmin();
+
+            if (view.isAdmin()) {
+                view.pedirSenha("Digite a sua senha");
+                view.pedirSenhaConf("Confirme sua senha");
+            }
             String senha =  view.getSenha();
             String senhaConf = view.getSenhaConf();
-            boolean admin = view.isAdmin();
 
             if (!nome.equals("") && !cpf.equals("")) {
                 if (senha.equals(senhaConf)){
