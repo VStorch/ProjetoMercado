@@ -18,7 +18,7 @@ public class TelaLogin extends JPanel {
 
 	private JTextField txfNome;
 	private JTextField txfCpf;
-	private JPasswordField txfSenha;
+	private JPasswordField pwSenha;
     private JLabel lblCadastro;
 
 	public TelaLogin() {
@@ -44,7 +44,7 @@ public class TelaLogin extends JPanel {
 		
 		txfNome = new JTextField();
 		txfCpf = new JTextField();
-		txfSenha = new JPasswordField();
+		pwSenha = new JPasswordField();
 		
 		JButton btnEntrar = new JButton("Entrar");
 		
@@ -55,7 +55,7 @@ public class TelaLogin extends JPanel {
 		add(txfCpf);
 
 		add(lblSenhaAd);
-		add(txfSenha);
+		add(pwSenha);
 		add(btnEntrar);
 		
 		GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
@@ -67,7 +67,7 @@ public class TelaLogin extends JPanel {
 		hGroup.addGroup(layout.createParallelGroup().
 				addComponent(txfNome).
 				addComponent(txfCpf).
-				addComponent(txfSenha).
+				addComponent(pwSenha).
 				addComponent(btnEntrar)
 			);
 		layout.setHorizontalGroup(hGroup);
@@ -83,7 +83,7 @@ public class TelaLogin extends JPanel {
 			);
 		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).
 				addComponent(lblSenhaAd).
-				addComponent(txfSenha)
+				addComponent(pwSenha)
 			);
 		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).
 				addComponent(lblCadastro).
@@ -92,7 +92,17 @@ public class TelaLogin extends JPanel {
 		layout.setVerticalGroup(vGroup);
 	}
 
-    public void esqueceuSenha(MouseAdapter mouseAdapter) {
+    public String getNome() {
+        return txfNome.getText();
+    }
+    public String getCpf() {
+        return txfCpf.getText();
+    }
+    public String getSenha() {
+        return new String(this.pwSenha.getPassword());
+    }
+
+    public void cadastrar(MouseAdapter mouseAdapter) {
         this.lblCadastro.addMouseListener(mouseAdapter);
     }
 }

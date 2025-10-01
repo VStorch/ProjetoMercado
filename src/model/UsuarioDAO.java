@@ -1,9 +1,6 @@
 package model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Types;
+import java.sql.*;
 
 public class UsuarioDAO {
 
@@ -35,6 +32,22 @@ public class UsuarioDAO {
                     e.printStackTrace();
                 }
             }
+        }
+    }
+
+    public void login(String nome, String cpf, String senha) {
+        String sql = "SELECT * FROM usuarios where cpf = ?";
+        Connection conexao = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            BancoDeDados.conectar();
+            statement = conexao.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+
+        } catch (SQLException e) {
+
         }
     }
 
