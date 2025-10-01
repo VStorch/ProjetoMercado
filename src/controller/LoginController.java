@@ -36,13 +36,15 @@ public class LoginController {
             if (nome.isEmpty() || cpf.isEmpty()) {
                 view.exibirMensagem("Erro", "Preencha todos os campos", 0);
             }
-            else if (model.login(usuario)) {
+            else if (admin) {
+                model.loginAdm(usuario);
                 view.exibirMensagem("Boas-Vindas", "Seja bem-vindo!", 1);
-                if (admin == true) {
-                    navegador.navegarPara("ADMIN");
-                } else {
-                    navegador.navegarPara("COMPRA");
-                }
+                navegador.navegarPara("ADMIN");
+            }
+            else if (!admin) {
+                model.loginCliente(usuario);
+                view.exibirMensagem("Boas-Vindas", "Seja bem-vindo!", 1);
+                navegador.navegarPara("COMPRA");
             } else {
                 view.exibirMensagem("Erro", "Usuário não encontrado", 0);
             }

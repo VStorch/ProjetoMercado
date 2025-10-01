@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.*;
+import java.util.Objects;
 
 public class UsuarioDAO {
 
@@ -35,7 +36,7 @@ public class UsuarioDAO {
         }
     }
 
-    public boolean login(Usuario user) {
+    public boolean loginAdm(Usuario user) {
         String sql = "SELECT * FROM usuarios where cpf = ?";
         Connection conexao = null;
         PreparedStatement statement = null;
@@ -47,11 +48,43 @@ public class UsuarioDAO {
             statement.setString(1, user.getCpf());
             resultSet = statement.executeQuery();
 
-            // Problema com NullPointerException
             if (resultSet.next()) {
                 String senhaBD = resultSet.getString("senha");
-                return senhaBD.equals(user.getSenha());
+                boolean admin = resultSet.getBoolean("adm");
+
+                if (!admin) {
+                    return false;
+                }
+
+                return Objects.equals(senhaBD, user.getSenha());
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            BancoDeDados.desconectar(conexao);
+        }
+        return false;
+    }
+
+    public boolean loginCliente(Usuario usuario) {
+        String sql = "SELECT * FROM usuarios WHERE cpf = ?";
+        Connection conexao = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            conexao = BancoDeDados.conectar();
+            statement = conexao.prepareStatement(sql);
+            statement.setString(1, usuario.getCpf());
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                String cpf = resultSet.getString("cpf");
+
+                return Objects.equals(cpf, usuario.getCpf());
+            }
+            return false;
 
         } catch (SQLException e) {
             e.printStackTrace();
