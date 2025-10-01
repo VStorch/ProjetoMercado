@@ -37,16 +37,19 @@ public class LoginController {
                 view.exibirMensagem("Erro", "Preencha todos os campos", 0);
             }
             else if (admin) {
-                model.loginAdm(usuario);
-                view.exibirMensagem("Boas-Vindas", "Seja bem-vindo!", 1);
-                navegador.navegarPara("ADMIN");
-            }
-            else if (!admin) {
-                model.loginCliente(usuario);
-                view.exibirMensagem("Boas-Vindas", "Seja bem-vindo!", 1);
-                navegador.navegarPara("COMPRA");
+                if (model.loginAdm(usuario)) {
+                    view.exibirMensagem("Boas-Vindas", "Seja bem-vindo!", 1);
+                    navegador.navegarPara("ADMIN");
+                } else {
+                    view.exibirMensagem("Erro", "Usuário não encontrado", 0);
+                }
             } else {
-                view.exibirMensagem("Erro", "Usuário não encontrado", 0);
+                if (model.loginCliente(usuario)) {
+                    view.exibirMensagem("Boas-Vindas", "Seja bem-vindo!", 1);
+                    navegador.navegarPara("COMPRA");
+                } else {
+                    view.exibirMensagem("Erro", "Usuário não encontrado", 0);
+                }
             }
         });
     }
