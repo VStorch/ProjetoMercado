@@ -5,7 +5,7 @@ use mercado;
 create table usuarios (
 	id int auto_increment primary key,
     nome varchar(100) not null,
-    email varchar(100) unique not null,
+    cpf varchar(100) unique not null,
     senha varchar(100),
     adm bool default false
 );

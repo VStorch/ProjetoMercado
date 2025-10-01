@@ -20,7 +20,7 @@ public class TelaLogin extends JPanel {
 	
 	private Janela janela;
 	
-	public TelaLogin(Janela janela) {
+	public TelaLogin() {
 		setPreferredSize(new Dimension(400, 200));
 		this.janela = janela;
 		

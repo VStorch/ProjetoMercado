@@ -12,6 +12,14 @@ public class Navegador {
     }
 
     public void adicionarPainel(String nome, JPanel tela) {
+        this.janela.adicionarTela(nome, tela);
+    }
 
+    public void navegarPara(String nome) {
+        this.janela.mostrarTela(nome);
+    }
+
+    public void sair() {
+        this.janela.dispose();
     }
 }

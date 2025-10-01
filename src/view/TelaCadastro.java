@@ -18,7 +18,7 @@ public class TelaCadastro extends JPanel {
 	
 	private Janela janela;
 	
-	public TelaCadastro(Janela janela) {
+	public TelaCadastro() {
 		setPreferredSize(new Dimension(400, 200));
 		this.janela = janela;
 		
