@@ -127,4 +127,8 @@ public class TelaCadastro extends JPanel {
         this.txtNome.setText("");
         this.txtCpf.setText("");
     }
+    public void senhasIncorretas() {
+        this.pwSenha.setText("");
+        this.pwSenhaConf.setText("");
+    }
 }

@@ -33,9 +33,10 @@ public class CadastroController {
 
                     this.view.limparFormularios();
                     this.view.exibirMensagem("Sucesso", "Cadastro realizado com sucesso!", 1);
-
+                    navegador.navegarPara("LOGIN");
                 } else {
                     this.view.exibirMensagem("Erro", "Senhas diferentes", 0);
+                    this.view.senhasIncorretas();
                 }
             } else {
                 this.view.exibirMensagem("Erro", "Preencha todos os campos", 0);
