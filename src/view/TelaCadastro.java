@@ -9,12 +9,10 @@ import javax.swing.GroupLayout.Alignment;
 
 public class TelaCadastro extends JPanel {
 	
-	private JTextField txtNome;
-	private JTextField txtCpf;
-	private JPasswordField pwSenha;
-	private JPasswordField pwSenhaConf;
+	private JTextField txtNome, txtCpf;
+	private JPasswordField pwSenha, pwSenhaConf;
 	private JRadioButton btnAdmin;
-    JButton btnCadastrar;
+    private JButton btnCadastrar;
 
 	public TelaCadastro() {
 		setPreferredSize(new Dimension(400, 200));
