@@ -23,7 +23,7 @@ public class Main {
         TelaCompra telaCompra = new TelaCompra();
         // Implementar Controller da tela compra
 
-        TelaAdmin telaAdmin = new TelaAdmin();
+        TelaCadProdutos telaAdmin = new TelaCadProdutos();
         // Implementar Controller da tela do admin
 
         navegador.adicionarPainel("CADASTRO", telaCadastro);
