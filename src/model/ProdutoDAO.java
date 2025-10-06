@@ -78,4 +78,21 @@ public class ProdutoDAO {
             BancoDeDados.desconectar(conexao);
         }
     }
+
+    public void excluirProduto(int id) {
+        String sql = "DELETE FROM produtos WHERE id = ?";
+        Connection conexao = null;
+        PreparedStatement statement = null;
+
+        try {
+            conexao = BancoDeDados.conectar();
+            statement = conexao.prepareStatement(sql);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            BancoDeDados.desconectar(conexao);
+        }
+    }
 }
