@@ -50,6 +50,7 @@ public class ProdutoDAO {
                 produto.setDescricao(resultSet.getString("descricao"));
                 produto.setQuantidade(resultSet.getInt("quantidade"));
                 produto.setPreco(resultSet.getDouble("preco"));
+                produtos.add(produto);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -60,17 +61,18 @@ public class ProdutoDAO {
     }
 
     public void atualizarProdutos(Produto produto) {
-        String sql = "UPDATE produtos SET nome = ?, descricao = ?, quantidade = ?, preco = ?";
+        String sql = "UPDATE produtos SET nome = ?, descricao = ?, quantidade = ?, preco = ? WHERE id = ?";
         Connection conexao = null;
         PreparedStatement statement = null;
 
         try {
             conexao = BancoDeDados.conectar();
             statement = conexao.prepareStatement(sql);
-            statement.setString(1, produto.getNome());
-            statement.setString(2, produto.getDescricao());
-            statement.setInt(3, produto.getQuantidade());
-            statement.setDouble(4, produto.getPreco());
+            statement.setInt(1, produto.getId());
+            statement.setString(2, produto.getNome());
+            statement.setString(3, produto.getDescricao());
+            statement.setInt(4, produto.getQuantidade());
+            statement.setDouble(5, produto.getPreco());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

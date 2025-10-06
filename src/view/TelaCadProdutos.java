@@ -4,6 +4,7 @@ import controller.ProdutoController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class TelaCadProdutos extends JPanel {
     private Janela janela;
@@ -29,7 +30,7 @@ public class TelaCadProdutos extends JPanel {
         JLabel lblQuant = new JLabel("Digite a quantidade do produto: ");
         lblQuant.setFont(new Font("Arial", Font.PLAIN, 12));
 
-        JLabel lblPreco = new JLabel("Digite o preço do produto: ");
+        JLabel lblPreco = new JLabel("Digite o preço do produto: R$");
         lblPreco.setFont(new Font("Arial", Font.PLAIN, 12));
 
         txtNome = new JTextField();
@@ -37,7 +38,7 @@ public class TelaCadProdutos extends JPanel {
         txtQuant = new JTextField();
         txtPreco = new JTextField();
 
-        btnSalvar = new JButton();
+        btnSalvar = new JButton("Cadastrar");
 
         add(lblNome);
         add(txtNome);
@@ -90,11 +91,24 @@ public class TelaCadProdutos extends JPanel {
     public String getDesc() {
         return this.txtDesc.getText();
     }
-    public String getQuant() {
-        return this.txtQuant.getText();
+    public Integer getQuant() {
+        return Integer.parseInt(txtQuant.getText());
     }
-    public String getPreco() {
-        return this.txtPreco.getText();
+    public Double getPreco() {
+        return Double.parseDouble(txtPreco.getText());
     }
 
+    public void cadastrar(ActionListener actionListener) {
+        this.btnSalvar.addActionListener(actionListener);
+    }
+
+    public void limparFormularios() {
+        this.txtNome.setText("");
+        this.txtDesc.setText("");
+        this.txtQuant.setText("");
+        this.txtPreco.setText("");
+    }
+    public void exibirMensagem(String titulo, String mensagem, int tipoMensagem) {
+        JOptionPane.showMessageDialog(null, mensagem, titulo, tipoMensagem);
+    }
 }
