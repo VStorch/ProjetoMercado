@@ -2,7 +2,10 @@ package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /** Equivale à classe Supermercado, contudo escolhi ProdutoDAO para manter a consistência com o restante do sistema */
 public class ProdutoDAO {
@@ -28,4 +31,31 @@ public class ProdutoDAO {
         }
     }
 
+    public List<Produto> listarProdutos() {
+        String sql = "SELECT * FROM produtos";
+        List<Produto> produtos = new ArrayList<>();
+        Connection conexao = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            conexao = BancoDeDados.conectar();
+            statement = conexao.prepareStatement(sql);
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Produto produto = new Produto();
+                produto.setId(resultSet.getInt("id"));
+                produto.setNome(resultSet.getString("nome"));
+                produto.setDescricao(resultSet.getString("descricao"));
+                produto.setQuantidade(resultSet.getInt("quantidade"));
+                produto.setPreco(resultSet.getDouble("preco"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            BancoDeDados.desconectar(conexao);
+        }
+        return produtos;
+    }
 }
