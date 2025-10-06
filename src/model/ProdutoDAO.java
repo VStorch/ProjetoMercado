@@ -58,4 +58,24 @@ public class ProdutoDAO {
         }
         return produtos;
     }
+
+    public void atualizarProdutos(Produto produto) {
+        String sql = "UPDATE produtos SET nome = ?, descricao = ?, quantidade = ?, preco = ?";
+        Connection conexao = null;
+        PreparedStatement statement = null;
+
+        try {
+            conexao = BancoDeDados.conectar();
+            statement = conexao.prepareStatement(sql);
+            statement.setString(1, produto.getNome());
+            statement.setString(2, produto.getDescricao());
+            statement.setInt(3, produto.getQuantidade());
+            statement.setDouble(4, produto.getPreco());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            BancoDeDados.desconectar(conexao);
+        }
+    }
 }
