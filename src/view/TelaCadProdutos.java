@@ -7,11 +7,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class TelaCadProdutos extends JPanel {
-    private Janela janela;
-    private ProdutoController controller;
-
     private JTextField txtNome, txtDesc, txtQuant, txtPreco;
-    private JButton btnSalvar;
+    private JButton btnSalvar, btnVoltar;
 
     public TelaCadProdutos() {
         setPreferredSize(new Dimension(400, 200));
@@ -39,6 +36,7 @@ public class TelaCadProdutos extends JPanel {
         txtPreco = new JTextField();
 
         btnSalvar = new JButton("Cadastrar");
+        btnVoltar = new JButton("Voltar");
 
         add(lblNome);
         add(txtNome);
@@ -57,7 +55,8 @@ public class TelaCadProdutos extends JPanel {
                 addComponent(lblNome).
                 addComponent(lblDesc).
                 addComponent(lblQuant).
-                addComponent(lblPreco)
+                addComponent(lblPreco).
+                addComponent(btnVoltar)
         );
         hGroup.addGroup(layout.createParallelGroup().
                 addComponent(txtNome).
@@ -81,7 +80,8 @@ public class TelaCadProdutos extends JPanel {
         vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                 .addComponent(lblPreco).addComponent(txtPreco)
         );
-        vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE).addComponent(btnSalvar));
+        vGroup.addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                .addComponent(btnVoltar).addComponent(btnSalvar));
         layout.setVerticalGroup(vGroup);
     }
 
@@ -98,8 +98,11 @@ public class TelaCadProdutos extends JPanel {
         return Double.parseDouble(txtPreco.getText());
     }
 
-    public void cadastrar(ActionListener actionListener) {
-        this.btnSalvar.addActionListener(actionListener);
+    public JButton getBtnSalvar() {
+        return btnSalvar;
+    }
+    public JButton getBtnVoltar() {
+        return btnVoltar;
     }
 
     public void limparFormularios() {

@@ -27,12 +27,14 @@ public class Main {
         // Implementar Controller da tela compra
 
         TelaCadProdutos telaCadProdutos = new TelaCadProdutos();
-        ProdutoController produtoController = new ProdutoController(telaCadProdutos, produtoDAO, navegador);
+        TelaAdmin telaAdmin = new TelaAdmin();
+        ProdutoController produtoController = new ProdutoController(telaCadProdutos, telaAdmin, produtoDAO, navegador);
 
         navegador.adicionarPainel("CADASTRO", telaCadastro);
         navegador.adicionarPainel("LOGIN", telaLogin);
         navegador.adicionarPainel("COMPRA", telaCompra);
-        navegador.adicionarPainel("ADMIN", telaCadProdutos);
+        navegador.adicionarPainel("CADASTRO_PRODUTO", telaCadProdutos);
+        navegador.adicionarPainel("ADMIN", telaAdmin);
 
         janela.setLocationRelativeTo(null);
 		janela.setVisible(true);
