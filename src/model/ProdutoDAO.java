@@ -32,7 +32,7 @@ public class ProdutoDAO {
     }
 
     public static List<Produto> listarProdutos() {
-        String sql = "SELECT * FROM produtos";
+        String sql = "SELECT * FROM produtos WHERE ativo = true";
         List<Produto> produtos = new ArrayList<>();
         Connection conexao = null;
         PreparedStatement statement = null;
