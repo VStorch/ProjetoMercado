@@ -10,7 +10,7 @@ import java.util.List;
 public class TelaCompra extends JPanel {
     private JTable tabelaProdutos, tabelaCarrinho;
     private DefaultTableModel modeloProdutos, modeloCarrinho;
-    private JButton btnAdicionar, btnRemover, btnCarrinho;
+    private JButton btnAdicionar, btnRemover, btnCarrinho, btnSair;
 
     public TelaCompra() {
         setLayout(new BorderLayout());
@@ -44,10 +44,12 @@ public class TelaCompra extends JPanel {
         btnAdicionar = new JButton("Adicionar Produto");
         btnRemover = new JButton("Remover produto");
         btnCarrinho = new JButton("Carrinho");
+        btnSair = new JButton("Sair");
 
         painelBotoes.add(btnAdicionar);
         painelBotoes.add(btnRemover);
         painelBotoes.add(btnCarrinho);
+        painelBotoes.add(btnSair);
 
         add(scrollPane1, BorderLayout.WEST);
         add(scrollPane2, BorderLayout.EAST);
@@ -80,5 +82,8 @@ public class TelaCompra extends JPanel {
     }
     public JButton getBtnCarrinho() {
         return btnCarrinho;
+    }
+    public JButton getBtnSair() {
+        return btnSair;
     }
 }

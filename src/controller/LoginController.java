@@ -41,6 +41,7 @@ public class LoginController {
                 Usuario usuario = model.loginAdm(new Usuario(null, nome, cpf, senha, true));
                 if (usuario != null) {
                     view.exibirMensagem("Boas-Vindas", "Seja bem-vindo! " + nome, 1);
+                    view.limpar();
                     navegador.navegarPara("ADMIN");
                 } else {
                     view.exibirMensagem("Erro", "Administrador não encontrado", 0);
@@ -52,8 +53,9 @@ public class LoginController {
 
                     TelaCompra telaCompra = new TelaCompra();
                     ProdutoDAO produtoDAO = new ProdutoDAO();
-                    CompraController compraController = new CompraController(telaCompra, produtoDAO, usuario);
+                    CompraController compraController = new CompraController(telaCompra, produtoDAO, usuario, navegador);
 
+                    view.limpar();
                     navegador.adicionarPainel("COMPRA", telaCompra);
                     navegador.navegarPara("COMPRA");
                 } else {

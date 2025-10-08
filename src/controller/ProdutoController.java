@@ -26,6 +26,7 @@ public class ProdutoController {
         this.telaAdmin.getBtnAdicionar().addActionListener(e -> navegador.navegarPara("CADASTRO_PRODUTO"));
         this.telaAdmin.getBtnEditar().addActionListener(e -> editarProduto());
         this.telaAdmin.getBtnExcluir().addActionListener(e -> excluirProduto());
+        this.telaAdmin.getBtnSair().addActionListener(e -> sair());
     }
 
     public void carregarProdutos() {
@@ -105,5 +106,9 @@ public class ProdutoController {
             model.excluirProduto(id);
             carregarProdutos();
         }
+    }
+
+    private void sair() {
+        navegador.navegarPara("LOGIN");
     }
 }

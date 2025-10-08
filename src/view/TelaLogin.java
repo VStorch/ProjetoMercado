@@ -98,6 +98,12 @@ public class TelaLogin extends JPanel {
         return new String(this.pwSenha.getPassword());
     }
 
+	public void limpar() {
+		txfNome.setText("");
+		txfCpf.setText("");
+		pwSenha.setText("");
+	}
+
     public void cadastrar(MouseAdapter mouseAdapter) {
         this.lblCadastro.addMouseListener(mouseAdapter);
     }

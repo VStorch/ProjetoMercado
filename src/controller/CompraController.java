@@ -16,11 +16,13 @@ public class CompraController {
     private TelaCompra telaCompra;
     private ProdutoDAO produtoDAO;
     private Usuario usuario;
+    private Navegador navegador;
 
-    public CompraController(TelaCompra telaCompra, ProdutoDAO produtoDAO, Usuario usuario) {
+    public CompraController(TelaCompra telaCompra, ProdutoDAO produtoDAO, Usuario usuario, Navegador navegador) {
         this.telaCompra = telaCompra;
         this.produtoDAO = produtoDAO;
         this.usuario = usuario;
+        this.navegador = navegador;
 
         carregarProdutos();
         inicializarEventos();
@@ -47,6 +49,7 @@ public class CompraController {
                 finalizarCompra();
             }
         });
+        telaCompra.getBtnSair().addActionListener(e -> sair());
     }
 
     private void carregarProdutos() {
@@ -115,5 +118,9 @@ public class CompraController {
 
         modeloCarrinho.setRowCount(0);
         carregarProdutos();
+    }
+
+    private void sair() {
+        navegador.navegarPara("LOGIN");
     }
 }

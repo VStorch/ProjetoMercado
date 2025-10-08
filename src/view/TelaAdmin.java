@@ -1,6 +1,5 @@
 package view;
 
-import controller.ProdutoController;
 import model.Produto;
 
 import javax.swing.*;
@@ -11,7 +10,7 @@ import java.util.List;
 public class TelaAdmin extends JPanel{
     private JTable tabela;
     private DefaultTableModel modeloTabela;
-    private JButton btnAdicionar, btnEditar, btnExcluir;
+    private JButton btnAdicionar, btnEditar, btnExcluir, btnSair;
 
     public TelaAdmin() {
         setLayout(new BorderLayout());
@@ -34,10 +33,12 @@ public class TelaAdmin extends JPanel{
         btnAdicionar = new JButton("Adicionar Produto");
         btnEditar = new JButton("Editar Produto");
         btnExcluir = new JButton("Excluir Produto");
+        btnSair = new JButton("Sair");
 
         painelBotoes.add(btnAdicionar);
         painelBotoes.add(btnEditar);
         painelBotoes.add(btnExcluir);
+        painelBotoes.add(btnSair);
 
         add(scrollPane, BorderLayout.CENTER);
         add(painelBotoes, BorderLayout.SOUTH);
@@ -57,7 +58,6 @@ public class TelaAdmin extends JPanel{
         if (linha == -1) return null;
         return (Integer) modeloTabela.getValueAt(linha, 0);
     }
-
     public JButton getBtnAdicionar() {
         return btnAdicionar;
     }
@@ -66,5 +66,8 @@ public class TelaAdmin extends JPanel{
     }
     public JButton getBtnExcluir() {
         return btnExcluir;
+    }
+    public JButton getBtnSair() {
+        return btnSair;
     }
 }
