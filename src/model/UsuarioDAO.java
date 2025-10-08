@@ -36,8 +36,8 @@ public class UsuarioDAO {
         }
     }
 
-    public boolean loginAdm(Usuario user) {
-        String sql = "SELECT * FROM usuarios where cpf = ?";
+    public Usuario loginAdm(Usuario user) {
+        String sql = "SELECT * FROM usuarios where cpf = ? AND adm = true";
         Connection conexao = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -50,13 +50,15 @@ public class UsuarioDAO {
 
             if (resultSet.next()) {
                 String senhaBD = resultSet.getString("senha");
-                boolean admin = resultSet.getBoolean("adm");
-
-                if (!admin) {
-                    return false;
+                if (Objects.equals(senhaBD, user.getSenha())) {
+                    return new Usuario(
+                            resultSet.getInt("id"),
+                            resultSet.getString("nome"),
+                            resultSet.getString("cpf"),
+                            resultSet.getString("senha"),
+                            resultSet.getBoolean("adm")
+                    );
                 }
-
-                return Objects.equals(senhaBD, user.getSenha());
             }
 
         } catch (SQLException e) {
@@ -64,10 +66,10 @@ public class UsuarioDAO {
         } finally {
             BancoDeDados.desconectar(conexao);
         }
-        return false;
+        return null;
     }
 
-    public boolean loginCliente(Usuario usuario) {
+    public Usuario loginCliente(Usuario usuario) {
         String sql = "SELECT * FROM usuarios WHERE cpf = ?";
         Connection conexao = null;
         PreparedStatement statement = null;
@@ -80,18 +82,21 @@ public class UsuarioDAO {
             resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                String cpf = resultSet.getString("cpf");
-
-                return Objects.equals(cpf, usuario.getCpf());
+                return new Usuario(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nome"),
+                        resultSet.getString("cpf"),
+                        resultSet.getString("senha"),
+                        resultSet.getBoolean("adm")
+                );
             }
-            return false;
 
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             BancoDeDados.desconectar(conexao);
         }
-        return false;
+        return null;
     }
 
     // Terminar CRUD conforme a necessidade

@@ -1,5 +1,6 @@
 package controller;
 
+import model.PedidoDAO;
 import model.ProdutoDAO;
 import model.Usuario;
 import model.UsuarioDAO;
@@ -30,24 +31,24 @@ public class LoginController {
             String nome = view.getNome();
             String cpf = view.getCpf();
             String senha = view.getSenha();
-            boolean admin = false;
+
+            if (cpf.isEmpty()) {
+                view.exibirMensagem("Erro", "Informe o CPF", 0);
+                return;
+            }
+
             if (!senha.isEmpty()) {
-                admin = true;
-            }
-            Usuario usuario = new Usuario(null, nome, cpf, senha, admin);
-            if (nome.isEmpty() || cpf.isEmpty()) {
-                view.exibirMensagem("Erro", "Preencha todos os campos", 0);
-            }
-            else if (admin) {
-                if (model.loginAdm(usuario)) {
-                    view.exibirMensagem("Boas-Vindas", "Seja bem-vindo!", 1);
+                Usuario usuario = model.loginAdm(new Usuario(null, nome, cpf, senha, true));
+                if (usuario != null) {
+                    view.exibirMensagem("Boas-Vindas", "Seja bem-vindo! " + nome, 1);
                     navegador.navegarPara("ADMIN");
                 } else {
-                    view.exibirMensagem("Erro", "Usuário não encontrado", 0);
+                    view.exibirMensagem("Erro", "Administrador não encontrado", 0);
                 }
             } else {
-                if (model.loginCliente(usuario)) {
-                    view.exibirMensagem("Boas-Vindas", "Seja bem-vindo!", 1);
+                Usuario usuario = model.loginCliente(new Usuario(null, nome, cpf, null, false));
+                if (usuario != null) {
+                    view.exibirMensagem("Boas-Vindas", "Seja bem-vindo! " + nome, 1);
 
                     TelaCompra telaCompra = new TelaCompra();
                     ProdutoDAO produtoDAO = new ProdutoDAO();
@@ -56,7 +57,8 @@ public class LoginController {
                     navegador.adicionarPainel("COMPRA", telaCompra);
                     navegador.navegarPara("COMPRA");
                 } else {
-                    view.exibirMensagem("Erro", "Usuário não encontrado", 0);
+                    view.exibirMensagem("Erro", "Cliente não encontrado", 0);
+
                 }
             }
         });
