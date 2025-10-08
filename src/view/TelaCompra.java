@@ -13,6 +13,7 @@ public class TelaCompra extends JPanel {
     private JTable tabelaProdutos, tabelaCarrinho;
     private DefaultTableModel modeloProdutos, modeloCarrinho;
     private JButton btnAdicionar, btnRemover, btnCarrinho, btnSair;
+    private JLabel lblTotal;
 
     public TelaCompra() {
         setLayout(new BorderLayout());
@@ -48,10 +49,13 @@ public class TelaCompra extends JPanel {
         btnCarrinho = new JButton("Carrinho");
         btnSair = new JButton("Sair");
 
+        lblTotal = new JLabel("Total: R$ 0.00");
+
         painelBotoes.add(btnAdicionar);
         painelBotoes.add(btnRemover);
         painelBotoes.add(btnCarrinho);
         painelBotoes.add(btnSair);
+        painelBotoes.add(lblTotal);
 
         add(scrollPane1, BorderLayout.WEST);
         add(scrollPane2, BorderLayout.EAST);
@@ -80,6 +84,17 @@ public class TelaCompra extends JPanel {
                     p.getId(), p.getNome(), p.getDescricao(), p.getQuantidade(), p.getPreco()
             });
         }
+    }
+
+    public void atualizarTotal() {
+        double total = 0.0;
+        for(int i = 0; i < modeloCarrinho.getRowCount(); i++) {
+            Object subtotalObj = modeloCarrinho.getValueAt(i, 4);
+            if (subtotalObj instanceof Number) {
+                total += ((Number) subtotalObj).doubleValue();
+            }
+        }
+        lblTotal.setText(String.format("Total: R$ %.2f", total));
     }
 
     public JTable getTabelaProdutos() {

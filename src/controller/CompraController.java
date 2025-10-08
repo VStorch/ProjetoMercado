@@ -74,6 +74,7 @@ public class CompraController {
         double subtotal = quantidade * preco;
 
         modeloCarrinho.addRow(new Object[]{id, nome, quantidade, preco, subtotal});
+        telaCompra.atualizarTotal();
     }
 
     private void removerCarrinho() {
@@ -83,6 +84,7 @@ public class CompraController {
         } else {
             JOptionPane.showMessageDialog(telaCompra, "Selecione um item para remover do carrinho");
         }
+        telaCompra.atualizarTotal();
     }
 
     private void finalizarCompra() {
@@ -102,19 +104,34 @@ public class CompraController {
         }
 
         double total = 0.0;
+        StringBuilder notaFiscal = new StringBuilder();
+
+        notaFiscal.append("Nota Fiscal\n");
+        notaFiscal.append("________________________\n");
+        notaFiscal.append("Nome: ").append(usuario.getNome()).append("\n");
+        notaFiscal.append("CPF: ").append(usuario.getCpf()).append("\n\n");
+        notaFiscal.append("Produtos Comprados: \n");
 
         for (int i = 0; i < modeloCarrinho.getRowCount(); i++) {
             int produtoId = (int) modeloCarrinho.getValueAt(i, 0);
+            String nomeProduto = (String) modeloCarrinho.getValueAt(i, 1);
             int quantidade = (int) modeloCarrinho.getValueAt(i, 2);
             double precoUnitario = (double) modeloCarrinho.getValueAt(i, 3);
+            double subtotal = quantidade * precoUnitario;
 
             pedidoDAO.adicionarItemPedido(pedidoId, produtoId, quantidade, precoUnitario);
             pedidoDAO.atualizarEstoque(produtoId, quantidade);
 
             total += (quantidade * precoUnitario);
+            notaFiscal.append("- ").append(nomeProduto)
+                    .append(" - R$").append(String.format("%.2f", subtotal))
+                    .append("\n");
         }
 
-        JOptionPane.showMessageDialog(telaCompra, "Compra finalizada com sucesso!\nTotal: R$ " + String.format("%.2f", total));
+        notaFiscal.append("________________________\n");
+        notaFiscal.append("Total: R$ ").append(String.format("%.2f", total)).append("\n");
+
+        JOptionPane.showMessageDialog(telaCompra, notaFiscal);
 
         modeloCarrinho.setRowCount(0);
         carregarProdutos();
