@@ -1,7 +1,6 @@
 package view;
 
-import java.awt.CardLayout;
-import java.awt.Dimension;
+import java.awt.*;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,7 +19,6 @@ public class Janela extends JFrame {
 		this.cardLayout = new CardLayout();
 		
 		this.contentPane = new JPanel(this.cardLayout);
-		this.contentPane.setPreferredSize(new Dimension(400, 200));
         setContentPane(this.contentPane);
     }
 
@@ -30,7 +28,19 @@ public class Janela extends JFrame {
 
     public void mostrarTela(String nome) {
 		this.cardLayout.show(contentPane, nome);
-        this.pack();
+        JPanel telaAtual = null;
+
+        for (Component component : contentPane.getComponents()) {
+            if (component.isVisible() && component instanceof JPanel) {
+                telaAtual = (JPanel) component;
+                break;
+            }
+        }
+        if (telaAtual != null) {
+            this.setSize(telaAtual.getPreferredSize());
+            this.revalidate();
+            this.repaint();
+        }
 	}
 
 }
