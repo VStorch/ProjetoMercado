@@ -5,6 +5,8 @@ import model.Produto;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.util.List;
 
 public class TelaCompra extends JPanel {
@@ -54,6 +56,21 @@ public class TelaCompra extends JPanel {
         add(scrollPane1, BorderLayout.WEST);
         add(scrollPane2, BorderLayout.EAST);
         add(painelBotoes, BorderLayout.SOUTH);
+
+        tabelaProdutos.addMouseMotionListener(new MouseMotionAdapter() {
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                int row = tabelaProdutos.rowAtPoint(e.getPoint());
+                int column = tabelaProdutos.columnAtPoint(e.getPoint());
+
+                if (column == 2 && row >= 0) {
+                    Object descricao = tabelaProdutos.getValueAt(row, column);
+                    tabelaProdutos.setToolTipText(descricao.toString());
+                } else {
+                    tabelaProdutos.setToolTipText(null);
+                }
+            }
+        });
     }
 
     public void atualizarTabela(List<Produto> produtos) {
