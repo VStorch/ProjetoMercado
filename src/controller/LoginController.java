@@ -1,7 +1,9 @@
 package controller;
 
+import model.ProdutoDAO;
 import model.Usuario;
 import model.UsuarioDAO;
+import view.TelaCompra;
 import view.TelaLogin;
 
 import java.awt.event.MouseAdapter;
@@ -46,6 +48,12 @@ public class LoginController {
             } else {
                 if (model.loginCliente(usuario)) {
                     view.exibirMensagem("Boas-Vindas", "Seja bem-vindo!", 1);
+
+                    TelaCompra telaCompra = new TelaCompra();
+                    ProdutoDAO produtoDAO = new ProdutoDAO();
+                    CompraController compraController = new CompraController(telaCompra, produtoDAO, usuario);
+
+                    navegador.adicionarPainel("COMPRA", telaCompra);
                     navegador.navegarPara("COMPRA");
                 } else {
                     view.exibirMensagem("Erro", "Usuário não encontrado", 0);

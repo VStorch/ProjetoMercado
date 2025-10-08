@@ -35,7 +35,7 @@ public class TelaCompra extends JPanel {
         tabelaProdutos = new JTable(modeloProdutos);
         JScrollPane scrollPane1 = new JScrollPane(tabelaProdutos);
 
-        tabelaCarrinho = new JTable(modeloProdutos);
+        tabelaCarrinho = new JTable(modeloCarrinho);
         JScrollPane scrollPane2 = new JScrollPane(tabelaCarrinho);
 
         JPanel painelBotoes = new JPanel();
@@ -63,6 +63,15 @@ public class TelaCompra extends JPanel {
         }
     }
 
+    public JTable getTabelaProdutos() {
+        return tabelaProdutos;
+    }
+    public JTable getTabelaCarrinho() {
+        return tabelaCarrinho;
+    }
+    public DefaultTableModel getModeloCarrinho() {
+        return modeloCarrinho;
+    }
     public JButton getBtnAdicionar() {
         return btnAdicionar;
     }

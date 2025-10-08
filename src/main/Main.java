@@ -1,9 +1,6 @@
 package main;
 
-import controller.CadastroController;
-import controller.LoginController;
-import controller.Navegador;
-import controller.ProdutoController;
+import controller.*;
 import model.ProdutoDAO;
 import model.UsuarioDAO;
 import view.*;
@@ -23,9 +20,6 @@ public class Main {
         TelaCadastro telaCadastro = new TelaCadastro();
         CadastroController cadastroController = new CadastroController(telaCadastro, usuarioDAO, navegador);
 
-        TelaCompra telaCompra = new TelaCompra();
-        // Implementar Controller da tela compra
-
         TelaCadProdutos telaCadProdutos = new TelaCadProdutos();
         TelaAdmin telaAdmin = new TelaAdmin();
         ProdutoController produtoController = new ProdutoController(telaCadProdutos, telaAdmin, produtoDAO, navegador);
@@ -33,7 +27,6 @@ public class Main {
 
         navegador.adicionarPainel("CADASTRO", telaCadastro);
         navegador.adicionarPainel("LOGIN", telaLogin);
-        navegador.adicionarPainel("COMPRA", telaCompra);
         navegador.adicionarPainel("CADASTRO_PRODUTO", telaCadProdutos);
         navegador.adicionarPainel("ADMIN", telaAdmin);
 
