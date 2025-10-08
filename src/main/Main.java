@@ -29,6 +29,7 @@ public class Main {
         TelaCadProdutos telaCadProdutos = new TelaCadProdutos();
         TelaAdmin telaAdmin = new TelaAdmin();
         ProdutoController produtoController = new ProdutoController(telaCadProdutos, telaAdmin, produtoDAO, navegador);
+        produtoController.carregarProdutos();
 
         navegador.adicionarPainel("CADASTRO", telaCadastro);
         navegador.adicionarPainel("LOGIN", telaLogin);

@@ -18,7 +18,7 @@ public class TelaAdmin extends JPanel{
         setPreferredSize(new Dimension(600, 400));
 
         modeloTabela = new DefaultTableModel(
-                new Object[] {"ID", "Nome", "Quantidade", "Preço"}, 0
+                new Object[] {"ID", "Nome", "Descrição", "Quantidade", "Preço"}, 0
         ) {
             public boolean isCellEditable(int row, int column) {
                 return false;

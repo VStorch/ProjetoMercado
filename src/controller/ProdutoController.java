@@ -51,13 +51,14 @@ public class ProdutoController {
     }
 
     private void voltarTelaAdmin() {
+        carregarProdutos();
         navegador.navegarPara("ADMIN");
     }
 
     private void editarProduto() {
         Integer id = telaAdmin.getProdutoSelecionadoId();
         if (id == null) {
-            JOptionPane.showMessageDialog(null, "Selucione um produto para editar");
+            JOptionPane.showMessageDialog(null, "Selecione um produto para editar");
             return;
         }
         navegador.navegarPara("CADASTRO_PRODUTO");
