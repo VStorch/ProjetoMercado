@@ -51,8 +51,10 @@ public class PedidoDAO {
 
     public void atualizarEstoque(int produtoId, int quantidadeComprada) {
         String sql = "UPDATE produtos SET quantidade = quantidade - ? WHERE id = ?";
+
         Connection conexao = null;
         PreparedStatement statement = null;
+        PreparedStatement statement2 = null;
 
         try {
             conexao = BancoDeDados.conectar();
@@ -60,10 +62,34 @@ public class PedidoDAO {
             statement.setInt(1, quantidadeComprada);
             statement.setInt(2, produtoId);
             statement.executeUpdate();
+
+            String verificarSql = "SELECT quantidade FROM produtos WHERE id = ?";
+            try {
+                statement2 = conexao.prepareStatement(verificarSql);
+                statement2.setInt(1, produtoId);
+                ResultSet rs = statement2.executeQuery();
+                if (rs.next() && rs.getInt("quantidade")) {
+                    desativarProduto(produtoId);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             BancoDeDados.desconectar(conexao);
+        }
+    }
+
+    public void desativarProduto(int id) {
+        String sql = "UPDATE produtos SET ativo = FALSE WHERE id = ?";
+        try (Connection conexao = BancoDeDados.conectar();
+             PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

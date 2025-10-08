@@ -15,7 +15,8 @@ create table produtos (
 	nome varchar(100) not null,
     descricao varchar(150),
     quantidade int default 0,
-    preco decimal(10, 2) not null
+    preco decimal(10, 2) not null,
+    ativo bool default true
 );
 
 create table pedidos (
