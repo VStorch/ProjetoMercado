@@ -68,11 +68,12 @@ public class ProdutoDAO {
         try {
             conexao = BancoDeDados.conectar();
             statement = conexao.prepareStatement(sql);
-            statement.setInt(1, produto.getId());
-            statement.setString(2, produto.getNome());
-            statement.setString(3, produto.getDescricao());
-            statement.setInt(4, produto.getQuantidade());
-            statement.setDouble(5, produto.getPreco());
+            statement.setString(1, produto.getNome());
+            statement.setString(2, produto.getDescricao());
+            statement.setInt(3, produto.getQuantidade());
+            statement.setDouble(4, produto.getPreco());
+            statement.setInt(5, produto.getId());
+
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -96,5 +97,34 @@ public class ProdutoDAO {
         } finally {
             BancoDeDados.desconectar(conexao);
         }
+    }
+
+    public Produto buscarPorId(Integer id) {
+        String sql = "SELECT * FROM produtos WHERE id = ?";
+        Connection conexao = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        Produto produto = null;
+
+        try {
+            conexao = BancoDeDados.conectar();
+            statement = conexao.prepareStatement(sql);
+            statement.setInt(1, id);
+            resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                produto = new Produto();
+                produto.setId(resultSet.getInt("id"));
+                produto.setNome(resultSet.getString("nome"));
+                produto.setDescricao(resultSet.getString("descricao"));
+                produto.setQuantidade(resultSet.getInt("quantidade"));
+                produto.setPreco(resultSet.getDouble("preco"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            BancoDeDados.desconectar(conexao);
+        }
+        return produto;
     }
 }

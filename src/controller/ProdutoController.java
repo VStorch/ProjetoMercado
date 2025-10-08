@@ -34,19 +34,34 @@ public class ProdutoController {
     }
 
     private void salvarProduto() {
-        String nome = telaCadProdutos.getNome();
-        String desc = telaCadProdutos.getDesc();
-        Integer quant = telaCadProdutos.getQuant();
-        Double preco = telaCadProdutos.getPreco();
+        try {
+            String nome = telaCadProdutos.getNome();
+            String desc = telaCadProdutos.getDesc();
+            Integer quant = telaCadProdutos.getQuant();
+            Double preco = telaCadProdutos.getPreco();
 
-        if (!nome.equals("") && !desc.equals("") && quant != null && preco != null) {
-            Produto produto = new Produto(null, nome, desc, quant, preco);
-            this.model.adicionarProduto(produto);
+            if (nome.isEmpty() || desc.isEmpty()) {
+                telaCadProdutos.exibirMensagem("Erro", "Preencha todos os campos", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-            this.telaCadProdutos.limparFormularios();
-            this.telaCadProdutos.exibirMensagem("Sucesso", "Cadastro do produto realizado", 1);
-        } else {
-            this.telaCadProdutos.exibirMensagem("Erro", "Preencha todos os campos", 0);
+            Integer id = telaCadProdutos.getProdutoId();
+
+            if (id == null) {
+                Produto novo = new Produto(null, nome, desc, quant, preco);
+                model.adicionarProduto(novo);
+                telaCadProdutos.exibirMensagem("Sucesso", "Produto  cadastrado com sucesso", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                Produto atualizado = new Produto(id, nome, desc, quant, preco);
+                model.atualizarProdutos(atualizado);
+                telaCadProdutos.exibirMensagem("Sucesso", "Produto  atualizado com sucesso", JOptionPane.INFORMATION_MESSAGE);
+                telaCadProdutos.limparFormularios();
+                voltarTelaAdmin();
+            }
+
+            telaCadProdutos.limparFormularios();
+        } catch (Exception e) {
+            telaCadProdutos.exibirMensagem("Erro", "Erro ao salvar produto", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -61,6 +76,20 @@ public class ProdutoController {
             JOptionPane.showMessageDialog(null, "Selecione um produto para editar");
             return;
         }
+        Produto produto = model.buscarPorId(id);
+        if (produto == null) {
+            JOptionPane.showMessageDialog(null, "Produto não encontrado");
+            return;
+        }
+
+        telaCadProdutos.preencherFormulario(
+                produto.getId(),
+                produto.getNome(),
+                produto.getDescricao(),
+                produto.getQuantidade(),
+                produto.getPreco()
+        );
+
         navegador.navegarPara("CADASTRO_PRODUTO");
     }
 

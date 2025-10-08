@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 public class TelaCadProdutos extends JPanel {
     private JTextField txtNome, txtDesc, txtQuant, txtPreco;
     private JButton btnSalvar, btnVoltar;
+    private Integer produtoId = null;
 
     public TelaCadProdutos() {
         setPreferredSize(new Dimension(400, 200));
@@ -37,18 +38,6 @@ public class TelaCadProdutos extends JPanel {
 
         btnSalvar = new JButton("Cadastrar");
         btnVoltar = new JButton("Voltar");
-
-        add(lblNome);
-        add(txtNome);
-
-        add(lblDesc);
-        add(txtDesc);
-
-        add(lblQuant);
-        add(txtQuant);
-
-        add(lblPreco);
-        add(txtPreco);
 
         GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
         hGroup.addGroup(layout.createParallelGroup().
@@ -97,12 +86,14 @@ public class TelaCadProdutos extends JPanel {
     public Double getPreco() {
         return Double.parseDouble(txtPreco.getText());
     }
-
     public JButton getBtnSalvar() {
         return btnSalvar;
     }
     public JButton getBtnVoltar() {
         return btnVoltar;
+    }
+    public Integer getProdutoId() {
+        return produtoId;
     }
 
     public void limparFormularios() {
@@ -111,6 +102,16 @@ public class TelaCadProdutos extends JPanel {
         this.txtQuant.setText("");
         this.txtPreco.setText("");
     }
+
+    public void preencherFormulario(Integer id, String nome, String desc, Integer quant, Double preco) {
+        produtoId = id;
+        txtNome.setText(nome);
+        txtDesc.setText(desc);
+        txtQuant.setText(String.valueOf(quant));
+        txtPreco.setText(String.valueOf(preco));
+        btnSalvar.setText("Salvar Alterações");
+    }
+
     public void exibirMensagem(String titulo, String mensagem, int tipoMensagem) {
         JOptionPane.showMessageDialog(null, mensagem, titulo, tipoMensagem);
     }
