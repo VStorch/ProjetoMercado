@@ -32,6 +32,11 @@ public class LoginController {
             String cpf = view.getCpf();
             String senha = view.getSenha();
 
+            if (nome.isEmpty()) {
+                view.exibirMensagem("Erro", "Informe o nome", 0);
+                return;
+            }
+
             if (cpf.isEmpty()) {
                 view.exibirMensagem("Erro", "Informe o CPF", 0);
                 return;
