@@ -22,7 +22,7 @@ public class TelaLogin extends JPanel {
 	public TelaLogin() {
 		setPreferredSize(new Dimension(400, 200));
 
-		setLayout(new MigLayout("debug, wrap 2, fill", "[100px] [grow]", ""));
+		setLayout(new MigLayout("wrap 2, fill", "[100px] [grow]", ""));
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 12));

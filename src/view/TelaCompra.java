@@ -1,6 +1,7 @@
 package view;
 
 import model.Produto;
+import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +17,7 @@ public class TelaCompra extends JPanel {
     private JLabel lblTotal;
 
     public TelaCompra() {
-        setLayout(new BorderLayout());
+        setLayout(new MigLayout("fill, wrap 2, insets 15", "[grow, fill] [grow, fill]", "[][grow, fill][]"));
         setPreferredSize(new Dimension(920, 400));
 
         modeloProdutos = new DefaultTableModel(
@@ -57,9 +58,9 @@ public class TelaCompra extends JPanel {
         painelBotoes.add(btnSair);
         painelBotoes.add(lblTotal);
 
-        add(scrollPane1, BorderLayout.WEST);
-        add(scrollPane2, BorderLayout.EAST);
-        add(painelBotoes, BorderLayout.SOUTH);
+        add(scrollPane1, "grow, push");
+        add(scrollPane2, "grow, push, wrap");
+        add(painelBotoes, "span 2, align center, growx, pushy");
 
         tabelaProdutos.addMouseMotionListener(new MouseMotionAdapter() {
             @Override
