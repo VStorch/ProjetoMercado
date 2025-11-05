@@ -1,5 +1,7 @@
 package view;
 
+import net.miginfocom.swing.MigLayout;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -20,10 +22,7 @@ public class TelaLogin extends JPanel {
 	public TelaLogin() {
 		setPreferredSize(new Dimension(400, 200));
 
-		GroupLayout layout = new GroupLayout(this);
-		setLayout(layout);
-		layout.setAutoCreateGaps(true);
-		layout.setAutoCreateContainerGaps(true);
+		setLayout(new MigLayout("debug, wrap 2, fill", "[100px] [grow]", ""));
 		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -45,47 +44,15 @@ public class TelaLogin extends JPanel {
 		btnEntrar = new JButton("Entrar");
 		
 		add(lblNome);
-		add(txfNome);
+		add(txfNome, "growx");
 
 		add(lblCpf);
-		add(txfCpf);
+		add(txfCpf, "growx");
 
 		add(lblSenhaAd);
-		add(pwSenha);
-		add(btnEntrar);
-		
-		GroupLayout.SequentialGroup hGroup = layout.createSequentialGroup();
-		hGroup.addGroup(layout.createParallelGroup().
-				addComponent(lblNome).
-				addComponent(lblCpf).
-				addComponent(lblSenhaAd).addComponent(lblCadastro)
-			);
-		hGroup.addGroup(layout.createParallelGroup().
-				addComponent(txfNome).
-				addComponent(txfCpf).
-				addComponent(pwSenha).
-				addComponent(btnEntrar)
-			);
-		layout.setHorizontalGroup(hGroup);
-		
-		GroupLayout.SequentialGroup vGroup = layout.createSequentialGroup();
-		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).
-				addComponent(lblNome).
-				addComponent(txfNome)
-			);
-		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).
-				addComponent(lblCpf).
-				addComponent(txfCpf)
-			);
-		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).
-				addComponent(lblSenhaAd).
-				addComponent(pwSenha)
-			);
-		vGroup.addGroup(layout.createParallelGroup(Alignment.BASELINE).
-				addComponent(lblCadastro).
-				addComponent(btnEntrar)
-			);
-		layout.setVerticalGroup(vGroup);
+		add(pwSenha, "growx");
+		add(btnEntrar, "align center");
+
 	}
 
     public String getNome() {
