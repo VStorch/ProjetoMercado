@@ -19,6 +19,7 @@ public class TelaCompra extends JPanel {
     public TelaCompra() {
         setLayout(new MigLayout("fill, wrap 2, insets 15", "[grow, fill] [grow, fill]", "[][grow, fill][]"));
         setPreferredSize(new Dimension(920, 400));
+        setMinimumSize(new Dimension(820, 300));
 
         modeloProdutos = new DefaultTableModel(
                 new Object[] {"ID", "Nome", "Descrição", "Quantidade", "Preço"}, 0

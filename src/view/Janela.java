@@ -45,6 +45,7 @@ public class Janela extends JFrame {
         }
         if (telaAtual != null) {
             this.setSize(telaAtual.getPreferredSize());
+            this.setMinimumSize(telaAtual.getMinimumSize());
             this.revalidate();
             this.repaint();
         }

@@ -21,6 +21,7 @@ public class TelaLogin extends JPanel {
 
 	public TelaLogin() {
 		setPreferredSize(new Dimension(400, 200));
+		setMinimumSize(new Dimension(400, 200));
 
 		setLayout(new MigLayout("wrap 2, fill", "[100px] [grow]", ""));
 		
@@ -53,7 +54,7 @@ public class TelaLogin extends JPanel {
 		add(pwSenha, "growx");
 		add(btnEntrar, "align center");
 
-		add(lblCadastro);
+		add(lblCadastro, "align center");
 
 	}
 

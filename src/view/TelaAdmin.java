@@ -15,6 +15,7 @@ public class TelaAdmin extends JPanel{
     public TelaAdmin() {
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(600, 400));
+        setMinimumSize(new Dimension(400, 200));
 
         modeloTabela = new DefaultTableModel(
                 new Object[] {"ID", "Nome", "Descrição", "Quantidade", "Preço"}, 0
