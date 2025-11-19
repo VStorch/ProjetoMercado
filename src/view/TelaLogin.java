@@ -53,6 +53,8 @@ public class TelaLogin extends JPanel {
 		add(pwSenha, "growx");
 		add(btnEntrar, "align center");
 
+		add(lblCadastro);
+
 	}
 
     public String getNome() {

@@ -28,6 +28,13 @@ public class Janela extends JFrame {
 
     public void mostrarTela(String nome) {
 		this.cardLayout.show(contentPane, nome);
+
+        if (nome.equals("CADASTRO_PRODUTO") || nome.equals("CADASTRO")) {
+            this.setResizable(false);
+        } else {
+            this.setResizable(true);
+        }
+
         JPanel telaAtual = null;
 
         for (Component component : contentPane.getComponents()) {
